@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>de.fmaul</groupId>
 	<artifactId>javascript-console</artifactId>
-	<version>0.7.1-SNAPSHOT</version>
+	<version>0.7.3-SNAPSHOT</version>
 	<name>Javascript console add-on compatible to ACS7.x or later</name>
 	<description>ACS 7.x compatible javascript console based on SDK 4.x</description>
 	<packaging>pom</packaging>
