@@ -145,7 +145,7 @@ function getJavaUptime(){
     var dateFormat = new Packages.java.text.SimpleDateFormat("HH'h':mm'min':ss'sec'");
     dateFormat.setTimeZone(Packages.java.util.TimeZone.getTimeZone("GMT"));
     var uptime = Packages.java.lang.management.ManagementFactory.getRuntimeMXBean().getUptime();
-    var formatted = Packages.org.apache.commons.lang.StringUtils.substringBefore((uptime / (3600 * 1000 * 24)),".") + "d:" + dateFormat.format(uptime);
+    var formatted = Packages.org.apache.commons.lang3.StringUtils.substringBefore((uptime / (3600 * 1000 * 24)),".") + "d:" + dateFormat.format(uptime);
     return formatted;
 }
 
@@ -228,8 +228,8 @@ model.processorCount = java.lang.management.ManagementFactory.getOperatingSystem
 model.systemLoad = java.lang.management.ManagementFactory.getOperatingSystemMXBean().getSystemLoadAverage()==-1?"n/a":java.lang.management.ManagementFactory.getOperatingSystemMXBean().getSystemLoadAverage();
 
 var operating =  Packages.java.lang.management.ManagementFactory.getOperatingSystemMXBean();
-model.freeMemory = Packages.org.apache.commons.lang.StringUtils.substringBefore(operating.getFreePhysicalMemorySize()/1024/1024,".");
-model.totalMemory = Packages.org.apache.commons.lang.StringUtils.substringBefore(operating.getTotalPhysicalMemorySize()/1024/1024,".");
+model.freeMemory = Packages.org.apache.commons.lang3.StringUtils.substringBefore(operating.getFreePhysicalMemorySize()/1024/1024,".");
+model.totalMemory = Packages.org.apache.commons.lang3.StringUtils.substringBefore(operating.getTotalPhysicalMemorySize()/1024/1024,".");
 
 model.java = java.lang.management.ManagementFactory.getRuntimeMXBean().getVmName()+" (version: "+java.lang.System.getProperty('java.version')+"- "+java.lang.management.ManagementFactory.getRuntimeMXBean().getVmVersion()+" ,"+java.lang.management.ManagementFactory.getRuntimeMXBean().getName()+", vendor:"+java.lang.management.ManagementFactory.getRuntimeMXBean().getVmVendor();
 model.javaArgs = getJavaArgs();

@@ -520,7 +520,7 @@ public class ExecuteWebscript extends AbstractWebScript {
 	 * @param writer where to output
 	 */
 	protected final void renderFormatTemplate(String format, final Map<String, Object> model, final Writer writer) {
-		format = (format == null) ? "" : format;
+		format = (format == null) ? StringUtils.EMPTY : format;
 
 		final String templatePath = this.getDescription().getId() + "." + format;
 
