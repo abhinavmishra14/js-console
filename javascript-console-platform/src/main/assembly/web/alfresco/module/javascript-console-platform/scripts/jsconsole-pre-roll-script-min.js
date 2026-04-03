@@ -1,0 +1,1 @@
+logger=jsconsole.getLogger();function print(a){jsconsole.print(a)}function dump(a){dumpService.addDump(a)};

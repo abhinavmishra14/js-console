@@ -1,4 +1,4 @@
-Javascript Console Admin Console component for Alfresco 4.x-5.1
+Javascript Console Admin Console component for Alfresco 7.x
 ===============================================================
 [![Build Status](https://travis-ci.org/share-extras/js-console.svg?branch=master)](https://travis-ci.org/share-extras/js-console)
 
@@ -91,7 +91,7 @@ Installation
 ------------
 
 The component has been developed to install on top of an existing Alfresco
-4.0, 4.1, 4.2 or 5.0 installation. The `javascript-console-repo-<version>.amp` or
+7.x installation. The `javascript-console-repo-<version>.amp` or
 `javascript-console-share-<version>.amp` needs to be installed into the Alfresco
 Repository / Share webapp using the Alfresco Module Management Tool:
 
@@ -109,20 +109,7 @@ Building
 To build the module and its AMP / JAR files, run the following command from the base
 project directory:
 
-    mvn install
-
-The command builds two JAR files named `javascript-console-repo-<version>.jar` /
-`javascript-console-share-<version>.jar` and `javascript-console-repo-<version>-sources.jar` /
-`javascript-console-share-<version>-sources.jar` as well as `javascript-console-repo-<version>.amp` /
-`javascript-console-share-<version>.amp` in the `target` directory within your project.
-
-If you want to build the module so it can be installed and run in an Alfresco 4.0 / 4.1 server
-running on Java 6 you need to have a Java 6 JDK available. Either make sure that your JDK 6 is set
-as the default Java environment (`PATH` / `JAVA_HOME` environment variable) or run the build with the
-following command from the base project directory:
-
-    mvn install -P Java6-crossCompile -Djdk6.executable=/path/to/javac
-
+    mvn clean install
 
 Using the component
 -------------------
