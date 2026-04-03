@@ -15,14 +15,7 @@ IF %1==build_start (
     CALL :tail
     GOTO END
 )
-IF %1==build_start_it_supported (
-    CALL :down
-    CALL :build
-    CALL :prepare-test
-    CALL :start
-    CALL :tail
-    GOTO END
-)
+
 IF %1==start (
     CALL :start
     CALL :tail
@@ -53,21 +46,8 @@ IF %1==reload_acs (
     CALL :tail
     GOTO END
 )
-IF %1==build_test (
-    CALL :down
-    CALL :build
-    CALL :prepare-test
-    CALL :start
-    CALL :test
-    CALL :tail_all
-    CALL :down
-    GOTO END
-)
-IF %1==test (
-    CALL :test
-    GOTO END
-)
-echo "Usage: %0 {build_start|start|stop|purge|tail|reload_share|reload_acs|build_test|test}"
+
+echo "Usage: %0 {build_start|start|stop|purge|tail|reload_share|reload_acs}"
 :END
 EXIT /B %ERRORLEVEL%
 
@@ -99,7 +79,7 @@ EXIT /B 0
 :build_acs
     docker-compose -f "%COMPOSE_FILE_PATH%" kill javascript-console-acs
     docker-compose -f "%COMPOSE_FILE_PATH%" rm -f javascript-console-acs
-	call %MVN_EXEC% clean package -pl javascript-console-integration-tests,javascript-console-platform,javascript-console-platform-docker
+	call %MVN_EXEC% clean package -pl javascript-console-platform,javascript-console-platform-docker
 EXIT /B 0
 :tail
     docker-compose -f "%COMPOSE_FILE_PATH%" logs -f
@@ -108,11 +88,9 @@ EXIT /B 0
     docker-compose -f "%COMPOSE_FILE_PATH%" logs --tail="all"
 EXIT /B 0
 :prepare-test
-    call %MVN_EXEC% verify -DskipTests=true -pl javascript-console-platform,javascript-console-integration-tests,javascript-console-platform-docker
+    call %MVN_EXEC% verify -DskipTests=true -pl javascript-console-platform,javascript-console-platform-docker
 EXIT /B 0
-:test
-    call %MVN_EXEC% verify -pl javascript-console-platform,javascript-console-integration-tests
-EXIT /B 0
+
 :purge
     docker volume rm -f javascript-console-acs-volume
     docker volume rm -f javascript-console-db-volume
