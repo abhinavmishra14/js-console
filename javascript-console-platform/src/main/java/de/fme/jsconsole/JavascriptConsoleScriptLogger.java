@@ -64,8 +64,8 @@ public final class JavascriptConsoleScriptLogger {
 	 */
 	@ScriptMethod(help = "Logs a message")
 	public void log(@ScriptParameter(help = "Message to log") String str) {
-		logger.debug(str);
-		jsConsole.print("DEBUG - " + str);
+		logger.info(str);
+		jsConsole.print(str);
 	}
 
 	/**
@@ -107,7 +107,7 @@ public final class JavascriptConsoleScriptLogger {
 	@ScriptMethod(help = "Logs an info message")
 	public void info(@ScriptParameter(help = "Message to log") String str) {
 		logger.info(str);
-		jsConsole.print(str);
+		jsConsole.print("INFO - " + str);
 	}
 
 	/**
