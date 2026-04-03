@@ -106,7 +106,7 @@ public class DumpService {
 	private SysAdminParams sysAdminParams;
 
 	/** The dump counter. */
-	private AtomicInteger dumpCounter = new AtomicInteger();
+	private final AtomicInteger dumpCounter = new AtomicInteger();
 
 	/** The dump limit. */
 	private int dumpLimit;
@@ -706,15 +706,6 @@ public class DumpService {
 	 */
 	public void setSysAdminParams(SysAdminParams sysAdminParams) {
 		this.sysAdminParams = sysAdminParams;
-	}
-
-	/**
-	 * Sets the dump counter.
-	 *
-	 * @param dumpCounter the new dump counter
-	 */
-	public void setDumpCounter(AtomicInteger dumpCounter) {
-		this.dumpCounter = dumpCounter;
 	}
 
 	/**

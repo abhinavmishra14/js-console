@@ -1,7 +1,11 @@
 package de.fme.jsconsole;
 
 import org.alfresco.repo.jscript.ScriptLogger;
-import org.apache.log4j.Level;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.core.LoggerContext;
+import org.apache.logging.log4j.core.config.Configuration;
+import org.apache.logging.log4j.core.config.LoggerConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.extensions.webscripts.annotation.ScriptClass;
@@ -169,7 +173,7 @@ public final class JavascriptConsoleScriptLogger {
 		 */
 		public void out(String str) {
 			System.out.println(str);
-			jsConsole.print(str);
+			JavascriptConsoleScriptLogger.this.jsConsole.print(str);
 		}
 	}
 
@@ -179,10 +183,13 @@ public final class JavascriptConsoleScriptLogger {
 	 * @param loggerName the logger name
 	 * @param level      the level
 	 */
-	public void setLevel(String loggerName, String level) {
-		org.apache.log4j.Logger underlyingLogger = org.apache.log4j.Logger.getLogger(loggerName);
-		Level logLevel = Level.toLevel(level);
-		underlyingLogger.setLevel(logLevel);
+	public void setLevel(final String loggerName, final String level) {
+		final Level logLevel = Level.toLevel(level);
+		final LoggerContext ctx = (LoggerContext) LogManager.getContext(false);
+		final Configuration config = ctx.getConfiguration();
+		final LoggerConfig loggerConfig = config.getLoggerConfig(loggerName);
+		loggerConfig.setLevel(logLevel);
+		ctx.updateLoggers();
 	}
 
 	/**
@@ -192,6 +199,6 @@ public final class JavascriptConsoleScriptLogger {
 	 * @return the level
 	 */
 	public String getLevel(String loggerName) {
-		return org.apache.log4j.Logger.getLogger(loggerName).getLevel().toString();
+		return LogManager.getLogger(loggerName).getLevel().toString();
 	}
 }
